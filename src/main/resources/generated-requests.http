@@ -1,0 +1,33 @@
+###
+POST http://localhost:8080/api/v1/student
+Content-Type: application/json
+
+{
+  "name": "Test Persoon",
+  "email": "test.persoon@fontys.nl",
+  "dob": "1999-12-17"
+}
+
+
+###
+DELETE http://localhost:8080/api/v1/student/1
+
+
+###
+PUT http://localhost:8080/api/v1/student/1?name=HansNieuweNaam&email=hans22@fontys.nl
+
+###
+POST http://localhost:8080/api/v1/student
+Content-Type: application/json
+
+{
+  "name": "Test Persoon2",
+  "email": "test.persoon@fontys.nl",
+  "dob": "1999-12-17"
+}
+
+###
+PUT http://localhost:8080/api/v1/student/99?name=HansNieuweNaam&email=hans22@fontys.nl
+
+###
+DELETE http://localhost:8080/api/v1/student/98
