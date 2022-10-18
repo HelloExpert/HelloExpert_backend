@@ -22,7 +22,6 @@ public class StudentController {
     public Optional<Student> getStudent(@PathVariable("studentId") Long studentId) {
         return studentService.getStudent(studentId);
     }
-// todo This does not work yet, but why? perhaps you need to create a new method in the StudentRepository.
 
     @PostMapping
     public void registerNewStudent(@RequestBody Student student) {
