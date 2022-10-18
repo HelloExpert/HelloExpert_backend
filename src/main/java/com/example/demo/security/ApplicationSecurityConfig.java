@@ -21,11 +21,12 @@ public class ApplicationSecurityConfig
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/api/v1/student", true)
+                .defaultSuccessUrl("/students", true)
                 .and()
                 .rememberMe()
                 .and()
-                .logout().logoutUrl("/logout");
+                .logout().logoutUrl("/logout")
+                .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID", "remember-me").logoutSuccessUrl("/login");
 
         return http.build();
     }

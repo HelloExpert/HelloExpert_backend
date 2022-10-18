@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/v1/student")
+@RequestMapping(path = "/students")
 public class StudentController {
 
     @Autowired
@@ -17,10 +17,12 @@ public class StudentController {
     public List<Student> getStudents() {
         return studentService.getStudents();
     }
-//    @GetMapping(path = "/get/{studentid}")
-//    public Optional<Student> getStudent(@PathVariable("studentId") Long studentId) {
-//        return studentService.getStudent(studentId);
-//    } // todo This does not work yet, but why? perhaps you need to create a new method in the StudentRepository.
+
+    @GetMapping(path = "{studentId}")
+    public Optional<Student> getStudent(@PathVariable("studentId") Long studentId) {
+        return studentService.getStudent(studentId);
+    }
+// todo This does not work yet, but why? perhaps you need to create a new method in the StudentRepository.
 
     @PostMapping
     public void registerNewStudent(@RequestBody Student student) {
