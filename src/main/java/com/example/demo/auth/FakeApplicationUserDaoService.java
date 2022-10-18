@@ -16,13 +16,8 @@ import static com.example.demo.security.ApplicationUserRole.STUDENT;
 public class FakeApplicationUserDaoService implements ApplicationUserDao {
 
 
-    private PasswordEncoder passwordEncoder;
-
     @Autowired
-    public FakeApplicationUserDaoService(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-
+    private PasswordEncoder passwordEncoder;
 
     private List<ApplicationUser> getApplicationUsers() {
         List<ApplicationUser> applicationUsers = Lists.newArrayList(
@@ -39,7 +34,29 @@ public class FakeApplicationUserDaoService implements ApplicationUserDao {
                         true,
                         true,
                         true,
+                        true),
+                new ApplicationUser("LeonVanDerVleuten",
+                        passwordEncoder.encode("password"),
+                        (Set<? extends GrantedAuthority>) STUDENT.getGrantedAuthorities(),
+                        true,
+                        true,
+                        true,
+                        true),
+                new ApplicationUser("AmirFahimnia",
+                        passwordEncoder.encode("password"),
+                        (Set<? extends GrantedAuthority>) STUDENT.getGrantedAuthorities(),
+                        true,
+                        true,
+                        true,
+                        true),
+                new ApplicationUser("BrittProp",
+                        passwordEncoder.encode("password"),
+                        (Set<? extends GrantedAuthority>) STUDENT.getGrantedAuthorities(),
+                        true,
+                        true,
+                        true,
                         true)
+                // todo make some admins
 
         );
         return applicationUsers;
