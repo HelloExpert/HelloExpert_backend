@@ -14,15 +14,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 public class ApplicationSecurityConfig {
 
-
+    @Autowired
     private PasswordEncoder passwordEncoder;
     private ApplicationUserService applicationUserService;
-
-    @Autowired
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, ApplicationUserService applicationUserService) {
-        this.passwordEncoder = passwordEncoder;
-        this.applicationUserService = applicationUserService;
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
