@@ -9,8 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 
-public class ApplicationSecurityConfig
-{
+public class ApplicationSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -20,13 +19,19 @@ public class ApplicationSecurityConfig
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/students", true)
+                    .loginPage("/login").permitAll()
+                    .defaultSuccessUrl("/students", true)
+                    .passwordParameter("password")
+                    .usernameParameter("username")
                 .and()
                 .rememberMe()
                 .and()
-                .logout().logoutUrl("/logout")
-                .clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID", "remember-me").logoutSuccessUrl("/login");
+                .logout()
+                    .logoutUrl("/logout")
+                    .clearAuthentication(true)
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID", "remember-me")
+                    .logoutSuccessUrl("/login");
 
         return http.build();
     }
