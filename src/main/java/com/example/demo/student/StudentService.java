@@ -2,7 +2,6 @@ package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -37,7 +36,9 @@ public class StudentService {
 
     @Transactional
     public void updateStudent(Long studentId, String name, String email) {
-        Student student = studentRepository.findById(studentId).orElseThrow(() -> new IllegalStateException(
+        Student student = studentRepository
+                .findById(studentId)
+                .orElseThrow(() -> new IllegalStateException(
                 "student with id " + studentId + "does not exist"
         ));
         if (name != null &&
@@ -55,5 +56,9 @@ public class StudentService {
             student.setEmail(email);
         }
 
+    }
+
+    public Optional<Student> getStudent(Long studentId) {
+        return studentRepository.findById(studentId);
     }
 }
