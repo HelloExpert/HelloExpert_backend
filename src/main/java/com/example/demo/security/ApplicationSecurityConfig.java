@@ -14,11 +14,19 @@ public class ApplicationSecurityConfig
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic();
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/api/v1/student", true)
+                .and()
+                .rememberMe()
+                .and()
+                .logout().logoutUrl("/logout");
+
         return http.build();
     }
 }
