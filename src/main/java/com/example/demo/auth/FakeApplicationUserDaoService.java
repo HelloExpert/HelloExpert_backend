@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.example.demo.security.ApplicationUserRole.STUDENT;
 
@@ -27,7 +28,14 @@ public class FakeApplicationUserDaoService implements ApplicationUserDao {
         List<ApplicationUser> applicationUsers = Lists.newArrayList(
                 new ApplicationUser("HansSprengers",
                         passwordEncoder.encode("password"),
-                        (List<? extends GrantedAuthority>) STUDENT.getGrantedAuthorities(),
+                        (Set<? extends GrantedAuthority>) STUDENT.getGrantedAuthorities(),
+                        true,
+                        true,
+                        true,
+                        true),
+                new ApplicationUser("KarstenSmits",
+                        passwordEncoder.encode("password"),
+                        (Set<? extends GrantedAuthority>) STUDENT.getGrantedAuthorities(),
                         true,
                         true,
                         true,
